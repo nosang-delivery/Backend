@@ -7,6 +7,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from './modules/auth/auth.module';
 import { TypeOrmConfigService } from './modules/common/config/typeorm.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CustomLoggerModule } from './modules/common/logger/custom-logger.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       useClass: TypeOrmConfigService,
     }),
     AuthModule,
+    CustomLoggerModule,
   ],
   controllers: [AppController],
   providers: [
