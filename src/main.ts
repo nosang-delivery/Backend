@@ -1,15 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { JwtAuthGuard } from './modules/guards/jwt.guard';
+import { JwtAuthGuard } from './modules/common/guards/jwt.guard';
 import { Reflector } from '@nestjs/core';
+import { ErrorLoggingInterceptor } from './modules/common/interceptors/error-logging.interceptor';
+import { HttpExceptionFilter } from './modules/common/exception-filter/http-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   // Enable CORS
   app.enableCors();
 
+  app.useGlobalInterceptors(new ErrorLoggingInterceptor());
+
+  app.useGlobalFilters(new HttpExceptionFilter());
   // Enable validation pipes globally
   app.useGlobalPipes(
     new ValidationPipe({
