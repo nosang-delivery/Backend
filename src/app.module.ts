@@ -8,6 +8,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { TypeOrmConfigService } from './modules/common/config/typeorm.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomLoggerModule } from './modules/common/logger/custom-logger.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -18,8 +19,9 @@ import { CustomLoggerModule } from './modules/common/logger/custom-logger.module
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
     }),
-    AuthModule,
     CustomLoggerModule,
+    AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
