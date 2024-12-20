@@ -1,4 +1,4 @@
-import { Controller, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ResponseTransform } from '../common/interceptors/response-transform.interceptor';
 
@@ -6,4 +6,9 @@ import { ResponseTransform } from '../common/interceptors/response-transform.int
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get()
+  getUser() {
+    return this.userService.getUser();
+  }
 }

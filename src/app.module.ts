@@ -9,6 +9,7 @@ import { TypeOrmConfigService } from './modules/common/config/typeorm.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomLoggerModule } from './modules/common/logger/custom-logger.module';
 import { UserModule } from './modules/user/user.module';
+import { ExceptionHandlingModule } from './modules/common/exception-handler/exception-handling.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserModule } from './modules/user/user.module';
     CustomLoggerModule,
     AuthModule,
     UserModule,
+    ExceptionHandlingModule,
   ],
   controllers: [AppController],
   providers: [
