@@ -12,10 +12,13 @@ export class AuthService {
 
   async signIn(dto: AuthRequestDto) {
     const payload = { email: dto.email, nickname: dto.nickname };
+    const access_token = this.jwtService.sign(payload);
+
+    await this.userRepository.save(dto);
 
     return {
       payload,
-      access_token: this.jwtService.sign(payload),
+      access_token,
     };
   }
 }
