@@ -11,8 +11,8 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
-  signIn(@Body() dto: AuthRequestDto) {
+  signup(@Body() dto: AuthRequestDto) {
     console.log(process.env.JWT_SECRET);
-    return this.authService.signIn(dto);
+    return this.authService.emailSignup(dto);
   }
 }

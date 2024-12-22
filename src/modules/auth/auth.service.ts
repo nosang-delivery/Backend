@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthRequestDto } from './dto/auth.request';
 import { UserRepository } from '../user/repository/user.repository';
+import { USER_ROLE } from '../common/enum/user.enum';
 
 @Injectable()
 export class AuthService {
@@ -10,11 +11,23 @@ export class AuthService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  async signIn(dto: AuthRequestDto) {
+  async emailSignup(dto: AuthRequestDto) {
     const payload = { email: dto.email, nickname: dto.nickname };
     const access_token = this.jwtService.sign(payload);
 
-    await this.userRepository.save(dto);
+    await this.userRepository.save({ ...dto, role: USER_ROLE.ADMIN });
+
+    return {
+      payload,
+      access_token,
+    };
+  }
+
+  async kakaoSignup(dto: AuthRequestDto) {
+    const payload = { email: dto.email, nickname: dto.nickname };
+    const access_token = this.jwtService.sign(payload);
+
+    await this.userRepository.save({ ...dto, role: USER_ROLE.USER });
 
     return {
       payload,

@@ -6,7 +6,4 @@ export class AuthRequestDto {
 
   @IsString()
   nickname: string;
-
-  @IsString()
-  role: string;
 }
