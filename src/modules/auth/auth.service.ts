@@ -34,4 +34,8 @@ export class AuthService {
       access_token,
     };
   }
+
+  async login(dto: AuthRequestDto) {
+    await this.userRepository.save({ ...dto, role: USER_ROLE.USER });
+  }
 }

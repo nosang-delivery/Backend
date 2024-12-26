@@ -12,7 +12,11 @@ export class AuthController {
 
   @Post()
   signup(@Body() dto: AuthRequestDto) {
-    console.log(process.env.JWT_SECRET);
     return this.authService.emailSignup(dto);
+  }
+
+  @Post()
+  login(@Body() dto: AuthRequestDto) {
+    return this.authService.login(dto);
   }
 }
