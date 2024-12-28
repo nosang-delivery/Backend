@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthRequestDto } from './dto/auth.request';
+import { JoinDto, LoginDto } from './dto/auth.request';
 import { ResponseTransform } from '../common/interceptors/response-transform.interceptor';
 import { Public } from '../common/decorators/public.decorator';
 
@@ -11,12 +11,12 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
-  signup(@Body() dto: AuthRequestDto) {
+  signup(@Body() dto: JoinDto) {
     return this.authService.emailSignup(dto);
   }
 
   @Post()
-  login(@Body() dto: AuthRequestDto) {
+  login(@Body() dto: LoginDto) {
     return this.authService.login(dto);
   }
 }
