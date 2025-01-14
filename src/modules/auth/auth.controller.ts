@@ -1,6 +1,6 @@
-import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Patch, Post, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { JoinDto, LoginDto } from './dto/auth.request';
+import { JoinDto, LoginDto } from './dto/request-auth';
 import { ResponseTransform } from '../common/interceptors/response-transform.interceptor';
 import { Public } from '../common/decorators/public.decorator';
 
